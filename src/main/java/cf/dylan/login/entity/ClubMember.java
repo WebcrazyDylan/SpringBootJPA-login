@@ -7,6 +7,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -25,7 +26,8 @@ public class ClubMember extends BaseEntity {
     private boolean fromSocial;
 
     @ElementCollection(fetch = FetchType.LAZY)  // 별도의 키가 없이 컬렉션 데이터 처리
-    private Set<ClubMemberRole> roleSet;
+    @Builder.Default
+    private Set<ClubMemberRole> roleSet = new HashSet<>();
 
     public void addMemberRole(ClubMemberRole clubMemberRole){
         roleSet.add(clubMemberRole);
